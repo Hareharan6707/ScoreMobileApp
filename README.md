@@ -14,7 +14,6 @@ This project entails a concise examination of the validation process for the suc
 ![](https://github.com/Hareharan6707/ScoreMobileApp/blob/main/ezgif.com-video-to-gif.gif)
 
 
-
 ## Environment setup
 
 Below are the pre-requisties/dependencies that needs to be in place for this test to run successfully. 
@@ -26,8 +25,8 @@ Below are the pre-requisties/dependencies that needs to be in place for this tes
 - Node.js v20.9.0
 - TestNG v7.7.0
 - Aventstack extent reports v5.0.5 (Test report handling)
-
-
+- Android 13.0
+- emulator ABI x86_64 , API_level 33 
 
 
 ## Resources 
@@ -42,7 +41,6 @@ Below are the pre-requisties/dependencies that needs to be in place for this tes
 ![alt text](https://github.com/Hareharan6707/ScoreMobileApp/blob/main/configDatafile.png)
 
 - Make the necessary changes in property file of modifying the device_name and ud_id  according to test host system. 
-
 
 
 ## Initialization 
@@ -71,7 +69,22 @@ Below are the pre-requisties/dependencies that needs to be in place for this tes
 
 ![alt text](https://github.com/Hareharan6707/ScoreMobileApp/blob/main/emulatorCapabilities.png)
 
+## Test Rationale  
 
+- The choice of a **Maven-based architecture** for our Appium test automation project was driven by a commitment to scalability, maintainability, and efficiency. 
+- Maven streamlines project management, allowing seamless integration of essential dependencies like Selenium, TestNG, and the Appium Java client. 
+- This architecture ensures consistent and repeatable test execution across various devices and platforms while enabling easy reporting through Spark Reports. 
+- The result is a professional, technically robust framework that optimizes test development and execution, ultimately enhancing our software quality and testing efficiency.
+
+## Coverage Assessment 
+
+The Appium test automation project performed a thorough coverage examination of the Score digital sports media app, verifying its strong functionality. 
+    
+* Successfully opened the selected league, team, or player page, confirming that it was shown correctly. 
+* Confirmed accurate navigation and data display tailored to the relevant entity by tapping on a sub-tab, such as league table or stats. 
+* The test successfully validated seamless back navigation, guaranteeing a smooth return to the previous page. 
+
+This technical accomplishment, which leveraged Maven, Selenium, TestNG, Spark Reports, and the Appium Java client, highlights the project's fullfillment in testing the provided functionalities of the Score app.
 
 
 
