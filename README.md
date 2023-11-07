@@ -69,6 +69,12 @@ Below are the pre-requisties/dependencies that needs to be in place for this tes
 
 ![alt text](https://github.com/Hareharan6707/ScoreMobileApp/blob/main/emulatorCapabilities.png)
 
+## Test Execution 
+
+Script be run by two ways 
+-  Directly from root/testng.xml file
+-  From **src/test/java/learnappium.Appium_Mobile** - ScoreAPP.java file
+
 ## Test Rationale  
 
 - The choice of a **Maven-based architecture** for our Appium test automation project was driven by a commitment to scalability, maintainability, and efficiency. 
