@@ -1,97 +1,97 @@
 package learnappium.Appium_Mobile;
 
-import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import com.aventstack.extentreports.Status;
+import lombok.SneakyThrows;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.google.common.collect.ImmutableMap;
 
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.options.UiAutomator2Options;
-import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
 import pages.ScoreAppPageObjects;
 
 public class ScoreAPP extends BaseTest {
 
 	@Test
-	public void ScoreAPPMethod() throws MalformedURLException, InterruptedException 
-	{
-		ScoreAppPageObjects ScoreAPPObj=new ScoreAppPageObjects(driver);
-		ConfigFileReader config =new ConfigFileReader();
-		
-		ExtentTest test =extent.createTest("Score Application launched successfully");
-		//test.log(Status.PASS, "Application launch");
-		
-		ScoreAPPObj.Wait(ScoreAPPObj.logo);
-		test.pass("Score logo is visible");
-		
-		//verifyText(ScoreAPPObj.Startbutton,"Get Started","the button is verified & displayed");
-		clickElement(ScoreAPPObj.Startbutton);
-		test.pass("Get start button clicked");
-		
-		ScoreAPPObj.Wait(ScoreAPPObj.continuebutton);
-		//verifyText(ScoreAPPObj.continuebutton,"Continue","the button is verified & displayed");
-        clickElement(ScoreAPPObj.continuebutton);
-        test.pass("Continue button clicked");
-        
-        ScoreAPPObj.Wait(ScoreAPPObj.maybelaterbuttonbutton);
-        verifyText(ScoreAPPObj.maybelaterbuttonbutton,"Maybe Later","the button is verified & displayed");
-		clickElement(ScoreAPPObj.maybelaterbuttonbutton);
-		test.pass("Maybe later button clicked successfully");
-		 
-		ScoreAPPObj.Wait(ScoreAPPObj.Searchfield);
-		clickElement(ScoreAPPObj.Searchfield);
-		enterText(ScoreAPPObj.SearchTextbox,config.getTeam_name());
-		test.pass("Manchester united Entered successfully");
-        clickElement(ScoreAPPObj.manchisterunitedlogo);
-        
-		//Continue
-		clickElement(ScoreAPPObj.continuebutton);
-		test.pass("Continue button clicked successfully");
-		//done
-		clickElement(ScoreAPPObj.donebutton);
-		test.pass("Done button clicked successfully");
+	public void ScoreAPPMethod() throws Exception {
+		ExtentTest test = extent.createTest("Validating the data load and smooth navigation of "+ config.getTeam_name()+" team page and it's sub-pages")
+				.assignAuthor("Hareharan");
 
-		//permission dialog box and pop-ups
-		if (pageIsDisplayed(ScoreAPPObj.permissionDialogbox)) {
-            clickElement(ScoreAPPObj.allowButton);
-			ScoreAPPObj.Wait(ScoreAPPObj.popUp);
-			clickElement(ScoreAPPObj.dismiss_Button);
-        }
+		try {
+			ScoreAppPageObjects ScoreAPPObj = new ScoreAppPageObjects(driver);
 
-		//verify page
-		ScoreAPPObj.Wait(ScoreAPPObj.manchesterunitedpageElement);
-		verifyPage(ScoreAPPObj.manchesterunitedpageElement,"Man United team landing page displayed correctly");
-		test.pass("Team page is verified successfully");
-		
-		ScoreAPPObj.Wait(ScoreAPPObj.manchesterunitedlogo);
-		clickElement(ScoreAPPObj.manchesterunitedlogo);
-		verifyText(ScoreAPPObj.manchesterunitedTeamlogo,"Manchester United","the Text is verified & displayed");
-		test.pass("Manchester united text is verified");
+			//Launch app
+			ScoreAPPObj.Wait(ScoreAPPObj.scoreLogo);
+			test.info("Score logo is visible");
 
-		clickElement(ScoreAPPObj.Teamstats);
-		verifyPage(ScoreAPPObj.TeamstatsData,"Team stats page is loaded as expected");
-		test.pass("Team stats Data is loaded successfully");
+			verifyText(ScoreAPPObj.getstartedButton, "Get Started", "the button is verified & displayed");
+			clickElement(ScoreAPPObj.getstartedButton);
+			test.info("Get start button clicked");
 
-		//navigate back
-        navigateBack();
-        test.pass("Able to navigate back successfully");
-		pageIsDisplayed(ScoreAPPObj.toolBar);
-        ScoreAPPObj.Wait(ScoreAPPObj.manchesterunitedpageElement);
-		verifyPage(ScoreAPPObj.manchesterunitedpageElement,"Navigated to the right page successfully");
-        
+			ScoreAPPObj.Wait(ScoreAPPObj.continueButton);
+			verifyText(ScoreAPPObj.continueButton, "Continue", "the button is verified & displayed");
+			clickElement(ScoreAPPObj.continueButton);
+			test.info("Continue button clicked");
+
+			//Location permissions
+			ScoreAPPObj.Wait(ScoreAPPObj.maybelaterButton);
+			verifyText(ScoreAPPObj.maybelaterButton, "Maybe Later", "the button is verified & displayed");
+			clickElement(ScoreAPPObj.maybelaterButton);
+			test.info("Maybe later button clicked successfully");
+
+			//Search bar for league,team,player
+			ScoreAPPObj.Wait(ScoreAPPObj.searchField);
+			clickElement(ScoreAPPObj.searchField);
+			enterText(ScoreAPPObj.searchTextbox, config.getTeam_name());
+			test.log(Status.PASS,config.getTeam_name() + " entered Successfully");
+			clickElement(ScoreAPPObj.teamLogo);
+
+			//Continue button
+			test.addScreenCaptureFromPath(takeSnapShot(driver));
+			clickElement(ScoreAPPObj.continueButton);
+			test.info("Continue button clicked successfully");
+
+			//done button
+			clickElement(ScoreAPPObj.doneButton);
+			test.log(Status.PASS,"Done button clicked successfully");
+
+			//notifications permission dialog box and pop-ups
+			if (pageIsDisplayed(ScoreAPPObj.permissionDialogbox)) {
+				clickElement(ScoreAPPObj.allowButton);
+				ScoreAPPObj.Wait(ScoreAPPObj.popUp);
+				clickElement(ScoreAPPObj.dismissButton);
+			}
+
+			//verify landing page
+			ScoreAPPObj.Wait(ScoreAPPObj.teampageElement);
+			verifyPage(ScoreAPPObj.teampageElement, config.getTeam_name() + "team landing page displayed correctly");
+			test.log(Status.PASS,"Team page is verified successfully");
+			test.addScreenCaptureFromPath(takeSnapShot(driver));
+
+			//Team page
+			ScoreAPPObj.Wait(ScoreAPPObj.teamFavpagelogo);
+			clickElement(ScoreAPPObj.teamFavpagelogo);
+			verifyPage(ScoreAPPObj.teamTeampagelogo, config.getTeam_name() + "the Text is verified & displayed");
+			test.info(config.getTeam_name() + " logo is clicked");
+
+			//Sub-page navigation
+			clickElement(ScoreAPPObj.Teamstats);
+			verifyPage(ScoreAPPObj.TeamstatsData, "Team stats page is loaded as expected");
+			test.log(Status.PASS,"Team stats Data is loaded successfully");
+			test.addScreenCaptureFromPath(takeSnapShot(driver));
+
+			//navigate back
+			navigateBack();
+			test.log(Status.PASS,"Able to navigate back successfully");
+			test.addScreenCaptureFromPath(takeSnapShot(driver));
+			pageIsDisplayed(ScoreAPPObj.toolBar);
+			ScoreAPPObj.Wait(ScoreAPPObj.teampageElement);
+			verifyPage(ScoreAPPObj.teampageElement, "Navigated to the right page successfully");
+		}
+		catch (Exception e){
+			test.log(Status.FAIL,"unexpected technical issue" + test.addScreenCaptureFromPath(takeSnapShot(driver)));
+
+			}
+		}
 	}
-}
+
