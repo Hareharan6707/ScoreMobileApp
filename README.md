@@ -1,6 +1,8 @@
 
 # Score Mobile App - Appium Automation
 
+<img src="https://i.ytimg.com/vi/tMKC98uOj5Y/maxresdefault.jpg"  width="50%" height="10%">
+
 This project entails a concise examination of the validation process for the successful retrieval of data from the desired landing pages within the 'theScore' digital sports media application. It focuses on the assessment of interactions with key page objects and elements to ensure the seamless functionality and user experience.
 
 
