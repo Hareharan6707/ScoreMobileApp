@@ -8,7 +8,8 @@ This project entails a concise examination of the validation process for the suc
 
 ## Authors
 
-- [Hareharan Sivashanmugam](https://www.github.com/Hareharan6707)
+- [Hareharan Sivashanmugam](https://www.linkedin.com/in/haree6707/)
+  
 ## gif Demo 
 
 ![](https://github.com/Hareharan6707/ScoreMobileApp/blob/main/ezgif.com-video-to-gif.gif)
@@ -26,8 +27,10 @@ Below are the pre-requisties/dependencies that needs to be in place for this tes
 - TestNG v7.7.0
 - Aventstack extent reports v5.0.5 (Test report handling)
 - Android 13.0
-- emulator ABI x86_64 , API_level 33 
+- emulator ABI x86_64 , API_level 33
+- Maven complier plugin v3.8.1
 
+Note: pom.xml file can be referred for actual version related information for the dependencies
 
 ## Resources 
 
