@@ -55,10 +55,10 @@ public class BaseTest {
 				UiAutomator2Options options= new UiAutomator2Options();
 
 				//Setting the capabilities
-				//options.setDeviceName(config.getDevice_name());
-				//options.setAvd(config.getDevice_name());
-				//options.setAvdLaunchTimeout(Duration.ofSeconds(18000));
-				options.setUdid(config.getUDID_name());
+				options.setDeviceName(config.getDevice_name());
+				options.setAvd(config.getDevice_name());
+				options.setAvdLaunchTimeout(Duration.ofSeconds(18000));
+				//options.setUdid(config.getUDID_name());
 				options.setApp(apkFile.getAbsolutePath());
 
 				//Driver Instantiation
@@ -92,7 +92,7 @@ public class BaseTest {
 		driver.navigate().back();
 	}
 	
-	public void verifyText(By locatorobj,String arg,String message) 
+	public void verifyText(By locatorobj, String arg, String message)
 	{
 	String Element=driver.findElement(locatorobj).getText();
 	Assert.assertEquals(Element, arg, message);

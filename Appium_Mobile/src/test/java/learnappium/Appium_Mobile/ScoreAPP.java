@@ -1,9 +1,12 @@
 package learnappium.Appium_Mobile;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 
 import com.aventstack.extentreports.Status;
+import io.appium.java_client.touch.WaitOptions;
 import lombok.SneakyThrows;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -24,7 +27,9 @@ public class ScoreAPP extends BaseTest {
 			ScoreAPPObj.Wait(ScoreAPPObj.scoreLogo);
 			test.info("Score logo is visible");
 
+			ScoreAPPObj.Wait(ScoreAPPObj.getstartedButton);
 			verifyText(ScoreAPPObj.getstartedButton, "Get Started", "the button is verified & displayed");
+			test.addScreenCaptureFromPath(takeSnapShot(driver));
 			clickElement(ScoreAPPObj.getstartedButton);
 			test.info("Get start button clicked");
 
@@ -48,12 +53,15 @@ public class ScoreAPP extends BaseTest {
 
 			//Continue button
 			test.addScreenCaptureFromPath(takeSnapShot(driver));
+			ScoreAPPObj.Wait(ScoreAPPObj.continueButton);
 			clickElement(ScoreAPPObj.continueButton);
 			test.info("Continue button clicked successfully");
 
 			//done button
+			ScoreAPPObj.Wait(ScoreAPPObj.doneButton);
 			clickElement(ScoreAPPObj.doneButton);
 			test.log(Status.PASS,"Done button clicked successfully");
+			WaitOptions.waitOptions(Duration.ofSeconds(10));
 
 			//notifications permission dialog box and pop-ups
 			if (pageIsDisplayed(ScoreAPPObj.permissionDialogbox)) {
