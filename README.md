@@ -75,7 +75,7 @@ Note: pom.xml file can be referred for actual version related information for th
 ## Test Execution 
 
 Script be run by two ways 
--  Directly from root/testng.xml file
+-  Directly from **testng.xml** file from the root directory
 -  From **src/test/java/learnappium.Appium_Mobile** - ScoreAPP.java file
 
 ## Test Rationale  
